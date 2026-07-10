@@ -16,6 +16,16 @@
   </header>
 
   <main class="page-main">
+    <section class="search-panel" aria-label="搜索 AI 工具">
+      <label for="searchInput">搜索工具</label>
+      <input
+        id="searchInput"
+        type="search"
+        placeholder="输入工具名称或简介关键词"
+        autocomplete="off"
+      >
+    </section>
+
     <section class="toolbar" aria-label="工具分类筛选">
       <button class="filter-button active" data-category="全部">全部</button>
       <button class="filter-button" data-category="写作">写作</button>
@@ -24,6 +34,7 @@
       <button class="filter-button" data-category="搜索">搜索</button>
     </section>
 
+    <p class="empty-message" id="emptyMessage">没有找到匹配的工具</p>
     <section class="tool-grid" id="toolGrid" aria-label="AI 工具列表"></section>
   </main>
 

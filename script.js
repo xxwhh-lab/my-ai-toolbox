@@ -32,7 +32,11 @@ const tools = [
 ];
 
 const toolGrid = document.getElementById("toolGrid");
+const emptyMessage = document.getElementById("emptyMessage");
+const searchInput = document.getElementById("searchInput");
 const filterButtons = document.querySelectorAll(".filter-button");
+
+let selectedCategory = "全部";
 
 function createToolCard(tool) {
   return `
@@ -44,22 +48,38 @@ function createToolCard(tool) {
   `;
 }
 
-function showTools(category) {
-  const visibleTools = category === "全部"
-    ? tools
-    : tools.filter(function (tool) {
-        return tool.category === category;
-      });
+function toolMatchesSearch(tool, keyword) {
+  const searchableText = `${tool.name} ${tool.description}`.toLowerCase();
+  return searchableText.includes(keyword);
+}
+
+function getVisibleTools() {
+  const keyword = searchInput.value.trim().toLowerCase();
+
+  return tools.filter(function (tool) {
+    const matchesCategory = selectedCategory === "全部" || tool.category === selectedCategory;
+    const matchesKeyword = keyword === "" || toolMatchesSearch(tool, keyword);
+
+    return matchesCategory && matchesKeyword;
+  });
+}
+
+function renderTools() {
+  const visibleTools = getVisibleTools();
 
   toolGrid.innerHTML = visibleTools.map(createToolCard).join("");
+  emptyMessage.classList.toggle("show", visibleTools.length === 0);
 }
 
 filterButtons.forEach(function (button) {
   button.addEventListener("click", function () {
     document.querySelector(".filter-button.active").classList.remove("active");
     button.classList.add("active");
-    showTools(button.dataset.category);
+    selectedCategory = button.dataset.category;
+    renderTools();
   });
 });
 
-showTools("全部");
+searchInput.addEventListener("input", renderTools);
+
+renderTools();

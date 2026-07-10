@@ -48,6 +48,36 @@ h1 {
   padding: 28px 0 48px;
 }
 
+.search-panel {
+  margin-bottom: 18px;
+}
+
+.search-panel label {
+  display: block;
+  margin-bottom: 8px;
+  color: #155291;
+  font-size: 15px;
+  font-weight: 700;
+}
+
+.search-panel input {
+  width: 100%;
+  min-height: 48px;
+  border: 1px solid #b8d7f8;
+  border-radius: 8px;
+  padding: 0 16px;
+  color: #102033;
+  background: #ffffff;
+  box-shadow: 0 10px 24px rgba(27, 104, 185, 0.1);
+  font-size: 16px;
+  outline: none;
+}
+
+.search-panel input:focus {
+  border-color: #0b7ce3;
+  box-shadow: 0 0 0 3px rgba(11, 124, 227, 0.14);
+}
+
 .toolbar {
   display: flex;
   flex-wrap: wrap;
@@ -70,6 +100,26 @@ h1 {
   border-color: #0b7ce3;
   color: #ffffff;
   background: #0b7ce3;
+}
+
+.filter-button.active {
+  box-shadow: 0 8px 18px rgba(11, 124, 227, 0.24);
+  font-weight: 700;
+}
+
+.empty-message {
+  display: none;
+  margin: 32px 0;
+  padding: 18px;
+  border: 1px dashed #9ccbf7;
+  border-radius: 8px;
+  color: #155291;
+  background: rgba(255, 255, 255, 0.8);
+  text-align: center;
+}
+
+.empty-message.show {
+  display: block;
 }
 
 .tool-grid {
