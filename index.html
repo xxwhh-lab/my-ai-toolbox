@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>我的 AI 工具箱</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="site-header">
+    <div class="header-content">
+      <p class="eyebrow">AI Tools Directory</p>
+      <h1>我的 AI 工具箱</h1>
+      <p class="intro">帮助非技术用户发现和整理常用 AI 工具</p>
+    </div>
+  </header>
+
+  <main class="page-main">
+    <section class="toolbar" aria-label="工具分类筛选">
+      <button class="filter-button active" data-category="全部">全部</button>
+      <button class="filter-button" data-category="写作">写作</button>
+      <button class="filter-button" data-category="设计">设计</button>
+      <button class="filter-button" data-category="编程">编程</button>
+      <button class="filter-button" data-category="搜索">搜索</button>
+    </section>
+
+    <section class="tool-grid" id="toolGrid" aria-label="AI 工具列表"></section>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>
