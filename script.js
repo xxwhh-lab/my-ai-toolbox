@@ -31,17 +31,56 @@ const tools = [
   }
 ];
 
+const favoriteStorageKey = "my-ai-toolbox-favorites";
 const toolGrid = document.getElementById("toolGrid");
 const emptyMessage = document.getElementById("emptyMessage");
 const searchInput = document.getElementById("searchInput");
+const favoriteFilterButton = document.getElementById("favoriteFilterButton");
 const filterButtons = document.querySelectorAll(".filter-button");
 
 let selectedCategory = "全部";
+let onlyFavorites = false;
+let favoriteTools = loadFavorites();
+
+function loadFavorites() {
+  try {
+    const savedFavorites = localStorage.getItem(favoriteStorageKey);
+    return savedFavorites ? JSON.parse(savedFavorites) : [];
+  } catch (error) {
+    return [];
+  }
+}
+
+function saveFavorites() {
+  try {
+    localStorage.setItem(favoriteStorageKey, JSON.stringify(favoriteTools));
+  } catch (error) {
+    emptyMessage.textContent = "收藏保存失败，请检查浏览器设置";
+    emptyMessage.classList.add("show");
+  }
+}
+
+function isFavorite(toolName) {
+  return favoriteTools.includes(toolName);
+}
 
 function createToolCard(tool) {
+  const favorite = isFavorite(tool.name);
+  const buttonText = favorite ? "已收藏" : "收藏";
+
   return `
     <article class="tool-card">
-      <h2>${tool.name}</h2>
+      <div class="card-top">
+        <h2>${tool.name}</h2>
+        <button
+          class="favorite-button ${favorite ? "is-favorite" : ""}"
+          type="button"
+          data-tool-name="${tool.name}"
+          aria-pressed="${favorite}"
+        >
+          ${buttonText}
+        </button>
+      </div>
       <p>${tool.description}</p>
       <span class="tag">${tool.category}</span>
     </article>
@@ -59,16 +98,39 @@ function getVisibleTools() {
   return tools.filter(function (tool) {
     const matchesCategory = selectedCategory === "全部" || tool.category === selectedCategory;
     const matchesKeyword = keyword === "" || toolMatchesSearch(tool, keyword);
+    const matchesFavorite = !onlyFavorites || isFavorite(tool.name);
 
-    return matchesCategory && matchesKeyword;
+    return matchesCategory && matchesKeyword && matchesFavorite;
   });
+}
+
+function getEmptyMessage() {
+  if (onlyFavorites && favoriteTools.length === 0) {
+    return "还没有收藏内容，请先点击工具卡片上的收藏按钮";
+  }
+
+  return "没有找到匹配的工具";
 }
 
 function renderTools() {
   const visibleTools = getVisibleTools();
 
   toolGrid.innerHTML = visibleTools.map(createToolCard).join("");
+  emptyMessage.textContent = getEmptyMessage();
   emptyMessage.classList.toggle("show", visibleTools.length === 0);
+}
+
+function toggleFavorite(toolName) {
+  if (isFavorite(toolName)) {
+    favoriteTools = favoriteTools.filter(function (name) {
+      return name !== toolName;
+    });
+  } else {
+    favoriteTools.push(toolName);
+  }
+
+  saveFavorites();
+  renderTools();
 }
 
 filterButtons.forEach(function (button) {
@@ -80,6 +142,21 @@ filterButtons.forEach(function (button) {
   });
 });
 
+favoriteFilterButton.addEventListener("click", function () {
+  onlyFavorites = !onlyFavorites;
+  favoriteFilterButton.classList.toggle("active", onlyFavorites);
+  favoriteFilterButton.setAttribute("aria-pressed", onlyFavorites);
+  renderTools();
+});
+
 searchInput.addEventListener("input", renderTools);
+
+toolGrid.addEventListener("click", function (event) {
+  const favoriteButton = event.target.closest(".favorite-button");
+
+  if (favoriteButton) {
+    toggleFavorite(favoriteButton.dataset.toolName);
+  }
+});
 
 renderTools();

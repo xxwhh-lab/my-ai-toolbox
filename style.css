@@ -78,14 +78,22 @@ h1 {
   box-shadow: 0 0 0 3px rgba(11, 124, 227, 0.14);
 }
 
+.filter-area {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 16px;
+  margin-bottom: 24px;
+}
+
 .toolbar {
   display: flex;
   flex-wrap: wrap;
   gap: 10px;
-  margin-bottom: 24px;
 }
 
-.filter-button {
+.filter-button,
+.favorite-filter-button {
   border: 1px solid #b8d7f8;
   border-radius: 8px;
   padding: 9px 16px;
@@ -96,15 +104,22 @@ h1 {
 }
 
 .filter-button:hover,
-.filter-button.active {
+.filter-button.active,
+.favorite-filter-button:hover,
+.favorite-filter-button.active {
   border-color: #0b7ce3;
   color: #ffffff;
   background: #0b7ce3;
 }
 
-.filter-button.active {
+.filter-button.active,
+.favorite-filter-button.active {
   box-shadow: 0 8px 18px rgba(11, 124, 227, 0.24);
   font-weight: 700;
+}
+
+.favorite-filter-button {
+  flex: 0 0 auto;
 }
 
 .empty-message {
@@ -129,7 +144,7 @@ h1 {
 }
 
 .tool-card {
-  min-height: 190px;
+  min-height: 210px;
   padding: 22px;
   border: 1px solid #d5e8fb;
   border-radius: 8px;
@@ -137,10 +152,37 @@ h1 {
   box-shadow: 0 14px 34px rgba(27, 104, 185, 0.12);
 }
 
+.card-top {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 12px;
+}
+
 .tool-card h2 {
-  margin: 0 0 12px;
+  margin: 0;
   font-size: 22px;
   color: #0a4382;
+}
+
+.favorite-button {
+  flex: 0 0 auto;
+  min-width: 76px;
+  border: 1px solid #b8d7f8;
+  border-radius: 8px;
+  padding: 7px 10px;
+  color: #155291;
+  background: #f7fbff;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+.favorite-button:hover,
+.favorite-button.is-favorite {
+  border-color: #0b7ce3;
+  color: #ffffff;
+  background: #0b7ce3;
 }
 
 .tool-card p {
@@ -165,6 +207,14 @@ h1 {
     font-size: 36px;
   }
 
+  .filter-area {
+    display: block;
+  }
+
+  .favorite-filter-button {
+    margin-top: 12px;
+  }
+
   .tool-grid {
     grid-template-columns: repeat(2, 1fr);
   }
@@ -187,9 +237,14 @@ h1 {
     gap: 8px;
   }
 
-  .filter-button {
+  .filter-button,
+  .favorite-filter-button {
     flex: 1 1 30%;
     padding: 9px 10px;
+  }
+
+  .favorite-filter-button {
+    width: 100%;
   }
 
   .tool-grid {

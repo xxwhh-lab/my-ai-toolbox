@@ -26,12 +26,18 @@
       >
     </section>
 
-    <section class="toolbar" aria-label="工具分类筛选">
-      <button class="filter-button active" data-category="全部">全部</button>
-      <button class="filter-button" data-category="写作">写作</button>
-      <button class="filter-button" data-category="设计">设计</button>
-      <button class="filter-button" data-category="编程">编程</button>
-      <button class="filter-button" data-category="搜索">搜索</button>
+    <section class="filter-area" aria-label="工具筛选">
+      <div class="toolbar" aria-label="工具分类筛选">
+        <button class="filter-button active" data-category="全部">全部</button>
+        <button class="filter-button" data-category="写作">写作</button>
+        <button class="filter-button" data-category="设计">设计</button>
+        <button class="filter-button" data-category="编程">编程</button>
+        <button class="filter-button" data-category="搜索">搜索</button>
+      </div>
+
+      <button class="favorite-filter-button" id="favoriteFilterButton" type="button" aria-pressed="false">
+        仅看收藏
+      </button>
     </section>
 
     <p class="empty-message" id="emptyMessage">没有找到匹配的工具</p>
