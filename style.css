@@ -144,7 +144,7 @@ h1 {
 }
 
 .tool-card {
-  min-height: 210px;
+  min-height: 248px;
   padding: 22px;
   border: 1px solid #d5e8fb;
   border-radius: 8px;
@@ -160,6 +160,47 @@ h1 {
   margin-bottom: 12px;
 }
 
+.tool-title {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  min-width: 0;
+}
+
+.tool-logo {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex: 0 0 auto;
+  width: 34px;
+  height: 34px;
+  border-radius: 8px;
+  background: #ffffff;
+  box-shadow: 0 8px 18px rgba(16, 32, 51, 0.12);
+  overflow: hidden;
+}
+
+.tool-logo img {
+  width: 24px;
+  height: 24px;
+  object-fit: contain;
+  display: block;
+}
+
+.logo-fallback {
+  display: none;
+  align-items: center;
+  justify-content: center;
+  width: 24px;
+  height: 24px;
+  border-radius: 6px;
+  color: #ffffff;
+  background: linear-gradient(135deg, rgba(15, 23, 42, 0.92), var(--theme-color));
+  font-size: 11px;
+  font-weight: 700;
+  line-height: 1;
+}
+
 .tool-card h2 {
   margin: 0;
   font-size: 22px;
@@ -167,22 +208,30 @@ h1 {
 }
 
 .favorite-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
   flex: 0 0 auto;
-  min-width: 76px;
-  border: 1px solid #b8d7f8;
-  border-radius: 8px;
-  padding: 7px 10px;
-  color: #155291;
-  background: #f7fbff;
+  width: 42px;
+  height: 42px;
+  border: 0;
+  border-radius: 50%;
+  color: #8b95a5;
+  background: transparent;
   cursor: pointer;
-  font-size: 14px;
+  font-size: 20px;
+  line-height: 1;
 }
 
-.favorite-button:hover,
+.favorite-button:hover {
+  color: #ff5a52;
+  background: transparent;
+}
+
 .favorite-button.is-favorite {
-  border-color: #0b7ce3;
-  color: #ffffff;
-  background: #0b7ce3;
+  color: #ff4d43;
+  background: transparent;
+  font-size: 24px;
 }
 
 .tool-card p {
@@ -192,14 +241,41 @@ h1 {
   line-height: 1.7;
 }
 
+.card-actions {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-top: 20px;
+}
+
 .tag {
   display: inline-block;
-  margin-top: 18px;
   padding: 6px 10px;
   border-radius: 6px;
   color: #075ba6;
   background: #e6f3ff;
   font-size: 14px;
+}
+
+.website-link {
+  flex: 0 0 auto;
+  border-radius: 8px;
+  padding: 9px 12px;
+  color: #ffffff;
+  background: #0b7ce3;
+  font-size: 14px;
+  text-decoration: none;
+}
+
+.website-link:hover {
+  background: #095da8;
+}
+
+.website-link.disabled {
+  color: #6b7d90;
+  background: #e6edf5;
+  cursor: not-allowed;
 }
 
 @media (max-width: 820px) {
@@ -249,5 +325,14 @@ h1 {
 
   .tool-grid {
     grid-template-columns: 1fr;
+  }
+
+  .card-actions {
+    align-items: stretch;
+    flex-direction: column;
+  }
+
+  .website-link {
+    text-align: center;
   }
 }
