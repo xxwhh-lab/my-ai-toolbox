@@ -171,6 +171,15 @@ const tools = [
     logoText: "Ca"
   },
   {
+    name: "Pencil",
+    description: "AI 设计工具，可在可视化画布中完成界面设计，并将设计落地为代码",
+    category: "设计",
+    website: "https://www.pencil.dev/",
+    themeColor: "#111827",
+    logoUrl: "https://www.pencil.dev/favicon.ico",
+    logoText: "P"
+  },
+  {
     name: "Figma",
     description: "协作式产品设计平台，提供设计、原型、交付和 AI 创作能力。",
     category: "设计",
