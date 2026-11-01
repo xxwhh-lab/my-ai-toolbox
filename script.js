@@ -117,6 +117,15 @@ const tools = [
     logoText: "CC"
   },
   {
+    name: "agent-qa",
+    description: "自然语言网页与移动端测试，支持持久记忆和自我改进。需 Node.js 24+；CLI 免费，模型与可选设备服务费用另计，采用 FSL-1.1-ALv2。",
+    category: "编程",
+    website: "https://vostride.com",
+    themeColor: "#111827",
+    logoUrl: "https://vostride.com/icon.png?icon.1muy1ymeud8i8.png",
+    logoText: "qa"
+  },
+  {
     name: "WorkBuddy",
     description: "CodeBuddy 产品体系中的办公智能体，面向文案、数据处理和自动化办公任务。",
     category: "办公",
